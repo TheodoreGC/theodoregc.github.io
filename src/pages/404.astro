@@ -1,0 +1,91 @@
+---
+// Component Imports
+import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
+import BlogFooter from '../components/BlogFooter.astro';
+
+// Component Script:
+// You can write any JavaScript/TypeScript that you'd like here.
+// It will run during the build, but never in the browser.
+// All variables are available to use in the HTML template below.
+let title = 'Theodore Garson';
+let subtitle = 'Principal Software Engineer';
+let description = 'Welcome to my personal website.';
+let permalink = 'https://theodoregc.github.io';
+let heroImage = '/404.png';
+---
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} permalink={permalink} />
+    <link rel="stylesheet" href="/blog.css" />
+
+    <style>
+    .hero-image {
+      width: 100vw;
+      object-fit: cover;
+      object-position: center;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+      max-width: 1280px;
+    }
+
+    @media (max-width: 50em) {
+      .hero-image {
+        height: 260px;
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
+    }
+
+      body {
+        width: 100%;
+        display: grid;
+        grid-template-rows: 3.5rem 1fr;
+        --gutter: 0.5rem;
+        --doc-padding: 2rem;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .content :global(main > * + *) {
+        margin-top: 1rem;
+      }
+
+      .intro > * {
+        margin: 0;
+      }
+
+      .latest {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+
+  <body>
+    <BlogHeader />
+    <div class="layout">
+      <main class="content">
+        <section class="intro">
+          <header>
+            <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt="404" />
+            <h1 class="latest">Oops!</h1>
+            <h2>The page does not exist.</h2>
+            <p>You may want to go back to the <a href="/">homepage</a>.</p>
+          </header>
+        </section>
+      </main>
+    </div>
+    <BlogFooter />
+  </body>
+</html>

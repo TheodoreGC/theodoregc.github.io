@@ -1,0 +1,115 @@
+---
+// Component Imports
+import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
+import BlogFooter from '../components/BlogFooter.astro';
+
+// Component Script:
+// You can write any JavaScript/TypeScript that you'd like here.
+// It will run during the build, but never in the browser.
+// All variables are available to use in the HTML template below.
+let title = 'Theodore Garson';
+let subtitle = 'Principal Software Engineer';
+let description = 'Welcome to my personal website.';
+let permalink = 'https://theodoregc.github.io';
+---
+<html lang="en">
+
+<head>
+  <BaseHead title={title} description={description} permalink={permalink} />
+  <link rel="stylesheet" href="/blog.css" />
+
+  <style>
+    body {
+      width: 100%;
+      display: grid;
+      grid-template-rows: 3.5rem 1fr;
+      --gutter: 0.5rem;
+      --doc-padding: 2rem;
+    }
+
+    header {
+      width: 100%;
+      height: 100%;
+      background-color: var(--theme-bg-offset);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content {
+      margin-top: 4rem;
+      margin-bottom: 8rem;
+    }
+
+    .content :global(main > * + *) {
+      margin-top: 1rem;
+    }
+
+    .latest {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <BlogHeader />
+  <div class="layout">
+    <main class="content">
+      <section class="intro">
+        <article itemprop="text">
+          <h1>About</h1>
+          <p>My name is Theodore Garson and I am currently working for <a href="https://www.dellemc.com/en-sg/index.htm"
+              rel="nofollow">Dell</a> as a Principal Software Engineer for the Edge.</p>
+          <p>I worked previously for the <a href="https://www.sgx.com" rel="nofollow">Singapore Stock Exchange</a> as a
+            Senior Front-End Engineer for multiple projects such as <a href="https://www.sgx.com" rel="nofollow">SGX's
+              public website</a> and <a
+              href="https://api2.sgx.com/sites/default/files/2018-05/Titan%20OTC%20Factsheet.pdf" rel="nofollow">SGX's
+              trade registration platform</a> called <a href="https://titanotc.sgx.com/" rel="nofollow">Titan OTC</a> to
+            name a few.</p>
+          <p>I started my IT journey in 2010. Back then, I was working as a SysAdmin for a family business in France. I
+            rapidly switched to Software Engineering which led me to work all around the globe for companies of all
+            shapes. Since then, I have always been searching for new challenges to tackle!</p>
+          <h2>Personal</h2>
+          <p>I am based in Singapore, where I live since 2016. I love the city so far and enjoy it with my wonderful
+            wife :-)</p>
+          <p>When I am not hacking around with new technologies, I like to travel and meet new people, try new cuisines
+            of the world and learn more about cultures I am not aware of.</p>
+          <p>I am also a musician and a sport addict: I play the guitar and I have a black-belt in Judo. I have recently
+            challenged myself to the science of striking as a beginner but motivated Muay Thai boxer.</p>
+          <h2>Hot topics</h2>
+          <p>One of my main goal for this year is to become proficient in <a href="https://www.rust-lang.org/"
+              rel="nofollow">Rust</a>. I am learning the language and I love it so far.</p>
+          <p>I have recently started reading <cite>Rust for the IoT: Building Internet of Things Apps with Rust and Raspberry
+            Pi</cite> by Joseph Faisal Nusairat (available <a href="https://www.apress.com/gp/book/9781484258590"
+              rel="nofollow">here</a>). I like to go through the book as I hack my Raspberry Pi at the same time.</p>
+          <p>I am also learning the <a href="https://golang.org/" rel="nofollow">Go language</a> and I have an amazing
+            opportunity to do so thanks to my company which is heavily investing in it alongside other tools like <a
+              href="https://www.docker.com/" rel="nofollow">Docker</a>, <a href="https://www.terraform.io/"
+              rel="nofollow">Terraform</a> and <a href="https://kubernetes.io/" rel="nofollow">Kubernetes</a>.</p>
+          <p>Productivity-wise, I have started using <a href="https://obsidian.md/" rel="nofollow">Obsidian</a> as a
+            personal notes "repository". This is the tool I use to write the content of this website.</p>
+          <p>Simply put, Obsidian works with folders of markdown files. It makes it a portable and flexible system open
+            to various processing tools (<i>more on that in an upcoming blog post</i>).</p>
+          <h2>Contact</h2>
+          <p>If you want to chat with me, the best way is to ping me on <a
+              href="https://www.linkedin.com/in/theodoregarsoncorbeaux/" rel="nofollow">LinkedIn</a>.</p>
+          <p>If you <strong><em>must</em></strong> call me: first of all, congratulations because I don't share my phone
+            number usually; I will warn you there is a strong likelihood I will not answer the call. If it is something
+            about a project I maintain, please file an issue instead. If if is about a job opportunity, make sure you
+            went through my <a
+              href="/Theodore_GARSON.pdf" target="_blank">resume</a> first.</p>
+          <h2>Disclaimer</h2>
+          <p>You know the spiel: <em>views and opinions are my own</em>. I speak for myself. This means it does
+            <strong>NOT</strong> include any current/former/future employers or communities I am a member of.</p>
+          <p>As far as I know, everything you will find on this website is original, derivative under or from an
+            acceptable license, or appropriately credited.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+  <BlogFooter />
+</body>
+
+</html>

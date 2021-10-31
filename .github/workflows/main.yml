@@ -1,0 +1,40 @@
+env:
+  githubEmail: theodore.corbeaux@gmail.com
+  deployToRepo: theodoregc.github.io
+
+name: GitHub Pages Astro CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies 🔧
+        run: npm ci
+
+      - name: Build 🏗️
+        run: |
+          npm run build
+          touch ./dist/.nojekyll
+
+      - name: Deploy 🚀
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          source-directory: 'dist'
+          destination-github-username: ${{ github.actor }}
+          destination-repository-name: ${{ env.deployToRepo }}
+          user-email: ${{ env.githubEmail }}
+          commit-message: Deploy ORIGIN_COMMIT
+          target-branch: gh-pages

@@ -1,0 +1,27 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "main": "index.html",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheodoreGC/website.git"
+  },
+  "author": "Theodore Garson <theodore.corbeaux@gmail.com>",
+  "license": "CC BY-NC-ND 4.0",
+  "bugs": {
+    "url": "https://github.com/TheodoreGC/website/issues"
+  },
+  "homepage": "https://theodoregc.github.io",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "astro": "^0.20.12",
+    "@astrojs/renderer-preact": "^0.2.2"
+  }
+}
