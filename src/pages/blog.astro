@@ -1,13 +1,15 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import BlogHeader from '../components/BlogHeader.astro';
+import BlogPostPreview from '../components/BlogPostPreview.astro';
 import BlogFooter from '../components/BlogFooter.astro';
 
-let title = 'Theodore Garson';
-let subtitle = 'Principal Software Engineer';
-let description = 'Welcome to my personal website.';
+let title = 'Theodore Garson\'s website - Blog';
+let description = 'Click on a post below to jump right into it.';
 let permalink = 'https://theodoregc.github.io';
-let heroImage = '/404.png';
+
+let allPosts = Astro.fetchContent('./posts/*.md');
+allPosts = allPosts.sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
 ---
 <html lang="en">
   <head>
@@ -15,23 +17,6 @@ let heroImage = '/404.png';
     <link rel="stylesheet" href="/blog.css" />
 
     <style>
-    .hero-image {
-      width: 100vw;
-      object-fit: cover;
-      object-position: center;
-      margin-top: 2rem;
-      margin-bottom: 4rem;
-      max-width: 1280px;
-    }
-
-    @media (max-width: 50em) {
-      .hero-image {
-        height: 260px;
-        margin-top: 0;
-        margin-bottom: 2rem;
-      }
-    }
-
       body {
         width: 100%;
         display: grid;
@@ -41,19 +26,27 @@ let heroImage = '/404.png';
       }
 
       header {
+        width: 100%;
+        height: 100%;
+        background-color: var(--theme-bg-offset);
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
       }
 
       .content {
-        margin-top: auto;
-        margin-bottom: auto;
+        margin-top: 4rem;
+        margin-bottom: 8rem;
       }
 
       .content :global(main > * + *) {
         margin-top: 1rem;
+      }
+
+      .intro {
+        padding-bottom: 4rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid var(--theme-divider);
       }
 
       .intro > * {
@@ -72,12 +65,11 @@ let heroImage = '/404.png';
     <div class="layout">
       <main class="content">
         <section class="intro">
-          <header>
-            <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt="404" />
-            <h1 class="latest">Oops!</h1>
-            <h2>The page does not exist.</h2>
-            <p>You may want to go back to the <a href="/">homepage</a>.</p>
-          </header>
+          <h1 class="latest">Welcome to my blog</h1>
+          <p>{description}</p>
+        </section>
+        <section aria-label="Blog post list">
+          {allPosts.map(p => <BlogPostPreview post={p} />)}
         </section>
       </main>
     </div>
