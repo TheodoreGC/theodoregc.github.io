@@ -1,12 +1,88 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    sessionStorage.redirect = location.href;
-  </script>
-  <meta http-equiv="refresh" content="0;URL='/website'">
-</head>
-<body>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/x-icon" href="/favicon.ico"><title>Theodore Garson</title><meta name="title" content="Theodore Garson"><meta name="description" content="Welcome to my personal website."><meta property="og:type" content="website"><meta property="og:url" content="https://theodoregc.github.io/website"><meta property="og:title" content="Theodore Garson"><meta property="og:description" content="Welcome to my personal website."><meta property="og:image" content="https://astro.build/social.jpg?v=1"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://theodoregc.github.io/website"><meta property="twitter:title" content="Theodore Garson"><meta property="twitter:description" content="Welcome to my personal website."><meta property="twitter:image" content="https://astro.build/social.jpg?v=1"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&amp;family=IBM+Plex+Sans:wght@400;700&amp;display=swap"><link rel="stylesheet" href="/blog.css"><style type="text/css">
+
+    .hero-image.astro-VGlVKq4R {
+      width: 100vw;
+      -o-object-fit: cover;
+         object-fit: cover;
+      -o-object-position: center;
+         object-position: center;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+      max-width: 1280px;
+    }
+
+    @media (max-width: 50em) {
+      .hero-image.astro-VGlVKq4R {
+        height: 260px;
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
+    }
+
+      body {
+        width: 100%;
+        display: grid;
+        grid-template-rows: 3.5rem 1fr;
+        --gutter: 0.5rem;
+        --doc-padding: 2rem;
+      }
+
+      header.astro-VGlVKq4R {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content.astro-VGlVKq4R {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .content.astro-VGlVKq4R main>*+* {
+        margin-top: 1rem;
+      }
+
+      .intro.astro-VGlVKq4R>.astro-VGlVKq4R {
+        margin: 0;
+      }
+
+      .latest.astro-VGlVKq4R {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    </style><link rel="stylesheet" href="/_astro/common-ZyhI0k.css" type="text/css"></head><body><header class="layout astro-mYHAcGzO"><article class="astro-mYHAcGzO"><h1 class="astro-mYHAcGzO"><a href="/" class="astro-mYHAcGzO"><span class="astro-mYHAcGzO">Home</span></a></h1><nav class="astro-mYHAcGzO"><ul class="astro-mYHAcGzO"><li class="astro-mYHAcGzO"><a href="/about" class="astro-mYHAcGzO">About</a></li></ul></nav><div class="theme-toggle astro-r0izTYzO"><label class="theme-toggle-light astro-r0izTYzO"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="astro-r0izTYzO"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fillrule="evenodd" cliprule="evenodd" class="astro-r0izTYzO"></path></svg><input type="radio" name="theme-toggle" value="light" title="Use light theme" aria-label="Use light theme" class="astro-r0izTYzO"></label><label class="theme-toggle-dark astro-r0izTYzO"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="astro-r0izTYzO"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" class="astro-r0izTYzO"></path></svg><input type="radio" name="theme-toggle" value="dark" title="Use dark theme" aria-label="Use dark theme" class="astro-r0izTYzO"></label></div><script>
+  let theme = localStorage.getItem('theodore-garson-website-theme');
+
+  if (!theme) {
+    localStorage.setItem('theodore-garson-website-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    theme = localStorage.getItem('theodore-garson-website-theme');
+  }
+
+  if (theme === 'dark') {
+    document.documentElement.classList.add('theme-dark');
+    document.querySelector('.theme-toggle-dark').classList.add('checked');
+    document.querySelector('.theme-toggle-light').classList.remove('checked');
+  } else {
+    document.querySelector('.theme-toggle-light').classList.add('checked');
+    document.querySelector('.theme-toggle-dark').classList.remove('checked');
+  }
+
+  document.querySelector('.theme-toggle').addEventListener('click', ({ target: element }) => {
+    if (element.tagName !== 'INPUT') return;
+
+    const checkedElement = document.querySelector('.theme-toggle .checked');
+    checkedElement?.classList.remove('checked');
+    element.closest('label')?.classList.add('checked');
+
+    if (element.closest('label')?.classList.contains('theme-toggle-dark')) {
+      theme = localStorage.setItem('theodore-garson-website-theme', 'dark');
+      document.documentElement.classList.add('theme-dark');
+    } else {
+      theme = localStorage.setItem('theodore-garson-website-theme', 'light');
+      document.documentElement.classList.remove('theme-dark');
+    }
+  });
+</script></article></header><div class="layout astro-VGlVKq4R"><main class="content astro-VGlVKq4R"><section class="intro astro-VGlVKq4R"><header class="astro-VGlVKq4R"><img width="720" height="420" class="hero-image astro-VGlVKq4R" loading="lazy" src="/404.png" alt="404"><h1 class="latest astro-VGlVKq4R">Oops!</h1><h2 class="astro-VGlVKq4R">The page does not exist.</h2><p class="astro-VGlVKq4R">You may want to go back to the <a href="/" class="astro-VGlVKq4R">homepage</a>.</p></header></section></main></div><footer class="layout astro-tlw1eqzd"><article class="astro-tlw1eqzd"><nav class="astro-tlw1eqzd"><ul class="astro-tlw1eqzd"><li class="astro-tlw1eqzd"><a href="https://www.linkedin.com/in/theodoregarsoncorbeaux" alt="linkedin" target="_blank" rel="noopener" class="astro-tlw1eqzd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="astro-tlw1eqzd"><g fill="none" class="astro-tlw1eqzd"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 2.838A1.838 1.838 0 0 1 2.838 1H21.16A1.837 1.837 0 0 1 23 2.838V21.16A1.838 1.838 0 0 1 21.161 23H2.838A1.838 1.838 0 0 1 1 21.161V2.838zm8.708 6.55h2.979v1.496c.43-.86 1.53-1.634 3.183-1.634c3.169 0 3.92 1.713 3.92 4.856v5.822h-3.207v-5.106c0-1.79-.43-2.8-1.522-2.8c-1.515 0-2.145 1.089-2.145 2.8v5.106H9.708V9.388zm-5.5 10.403h3.208V9.25H4.208v10.54zM7.875 5.812a2.063 2.063 0 1 1-4.125 0a2.063 2.063 0 0 1 4.125 0z" fill="currentColor" class="astro-tlw1eqzd"></path></g></svg></a></li><li class="astro-tlw1eqzd"><a href="https://github.com/TheodoreGC" alt="github" target="_blank" rel="noopener" class="astro-tlw1eqzd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 250" class="astro-tlw1eqzd"><path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0zm-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931zm6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66zm4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08zm7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403z" fill="currentColor" class="astro-tlw1eqzd"></path></svg></a></li></ul></nav><div class="text_small website-footer-copyright astro-tlw1eqzd">
+      © Copyright 2021 Theodore Garson
+    </div></article></footer></body></html>
