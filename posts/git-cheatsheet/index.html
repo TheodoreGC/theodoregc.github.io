@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/x-icon" href="/favicon.ico"><title>Git survival kit</title><meta name="title" content="Git survival kit"><meta name="description" content="A survival kit for git to use on a daily basis."><meta property="og:type" content="website"><meta property="og:url"><meta property="og:title" content="Git survival kit"><meta property="og:description" content="A survival kit for git to use on a daily basis."><meta property="og:image" content="https://astro.build/social.jpg?v=1"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url"><meta property="twitter:title" content="Git survival kit"><meta property="twitter:description" content="A survival kit for git to use on a daily basis."><meta property="twitter:image" content="https://astro.build/social.jpg?v=1"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&amp;family=IBM+Plex+Sans:wght@400;700&amp;display=swap"><link rel="stylesheet" href="/blog.css"><link rel="stylesheet" href="/_astro/common-Z12te2r.css" type="text/css"></head><body><header class="layout astro-mYHAcGzO"><article class="astro-mYHAcGzO"><h1 class="astro-mYHAcGzO"><a href="/" class="astro-mYHAcGzO"><span class="astro-mYHAcGzO">Home</span></a></h1><nav class="astro-mYHAcGzO"><ul class="astro-mYHAcGzO"><li class="astro-mYHAcGzO"><a href="/about" class="astro-mYHAcGzO">About</a></li><li class="astro-mYHAcGzO"><a href="/blog" class="astro-mYHAcGzO">Blog</a></li></ul></nav><div class="theme-toggle astro-r0izTYzO"><label class="theme-toggle-light astro-r0izTYzO"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="astro-r0izTYzO"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fillrule="evenodd" cliprule="evenodd" class="astro-r0izTYzO"></path></svg><input type="radio" name="theme-toggle" value="light" title="Use light theme" aria-label="Use light theme" class="astro-r0izTYzO"></label><label class="theme-toggle-dark astro-r0izTYzO"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="astro-r0izTYzO"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" class="astro-r0izTYzO"></path></svg><input type="radio" name="theme-toggle" value="dark" title="Use dark theme" aria-label="Use dark theme" class="astro-r0izTYzO"></label></div><script>
+  let theme = localStorage.getItem('theodore-garson-website-theme');
+
+  if (!theme) {
+    localStorage.setItem('theodore-garson-website-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    theme = localStorage.getItem('theodore-garson-website-theme');
+  }
+
+  if (theme === 'dark') {
+    document.documentElement.classList.add('theme-dark');
+    document.querySelector('.theme-toggle-dark').classList.add('checked');
+    document.querySelector('.theme-toggle-light').classList.remove('checked');
+  } else {
+    document.querySelector('.theme-toggle-light').classList.add('checked');
+    document.querySelector('.theme-toggle-dark').classList.remove('checked');
+  }
+
+  document.querySelector('.theme-toggle').addEventListener('click', ({ target: element }) => {
+    if (element.tagName !== 'INPUT') return;
+
+    const checkedElement = document.querySelector('.theme-toggle .checked');
+    checkedElement?.classList.remove('checked');
+    element.closest('label')?.classList.add('checked');
+
+    if (element.closest('label')?.classList.contains('theme-toggle-dark')) {
+      theme = localStorage.setItem('theodore-garson-website-theme', 'dark');
+      document.documentElement.classList.add('theme-dark');
+    } else {
+      theme = localStorage.setItem('theodore-garson-website-theme', 'light');
+      document.documentElement.classList.remove('theme-dark');
+    }
+  });
+</script></article></header><div class="layout astro-eZ0V7RoP"><article class="content astro-eZ0V7RoP"><div class="astro-eZ0V7RoP"><header class="astro-eZ0V7RoP"><img width="720" height="420" class="hero-image astro-eZ0V7RoP" loading="lazy" src="/code.jpeg" alt="Git"><p class="publish-date astro-eZ0V7RoP">05/11/2021</p><h1 class="title astro-eZ0V7RoP">Git survival kit</h1><div class="author astro-vgbcRyj4"><p class="astro-vgbcRyj4"><a href="https://github.com/TheodoreGC" target="_blank" class="astro-vgbcRyj4">@TheodoreGC</a></p></div></header><main class="astro-eZ0V7RoP"><p><em>The following format <code>[UPPERCASED_STRING]</code> represents the string to be replaced in the command.</em></p><h2 id="initial-config">Initial Config</h2><p>Change default branch name:</p><pre class=" language-sh"><code class="language-sh">git config --global init.defaultBranch [DEFAULT_NAME]
+</code></pre><p>Change default editor:</p><pre class=" language-sh"><code class="language-sh">git config --global core.editor [EDITOR_NAME]
+</code></pre><p>Change user name:</p><pre class=" language-sh"><code class="language-sh">git config --global user.name "[FIRST_NAME] [LAST_NAME]"
+</code></pre><p>Change user email:</p><pre class=" language-sh"><code class="language-sh">git config --global user.email "[EMAIL_ADRESS]"
+</code></pre><p>Aliases:</p><pre class=" language-sh"><code class="language-sh">git config --global alias.co checkout
+git config --global alias.br 'branch -av'
+git config --global alias.st status
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.a add
+git config --global alias.amend 'commit --amend'
+git config --global alias.ci commit
+git config --global alias.cm 'commit -m'
+git config --global alias.last 'log -l HEAD'
+git config --global alias.visual '!gitk'
+</code></pre><h2 id="repository">Repository</h2><p>Create a new repository:</p><pre class=" language-sh"><code class="language-sh">git init
+</code></pre><p>Cloning a repository (deep clone):</p><pre class=" language-sh"><code class="language-sh">git clone [URL]
+</code></pre><p>Cloning a repository (shallow clone):</p><pre class=" language-sh"><code class="language-sh">git clone --depth [NUMBER_OF_COMMIT_FROM_THE_HEAD] [URL]
+</code></pre><p>Show all remote:</p><pre class=" language-sh"><code class="language-sh">git remote -v
+</code></pre><p>Add a new remote:</p><pre class=" language-sh"><code class="language-sh">git remote add [LOCAL_ID] [URL]
+</code></pre><p>Update a remote:</p><pre class=" language-sh"><code class="language-sh">git remote set-url [LOCAL_ID] [URL]
+</code></pre><h2 id="branch">Branch</h2><p>List all existing branches with the latest commit comment:</p><pre class=" language-sh"><code class="language-sh">git branch -av
+</code></pre><p>Create a branch:</p><pre class=" language-sh"><code class="language-sh">git branch [NEW_BRANCH]
+</code></pre><p>Delete a local branch:</p><pre class=" language-sh"><code class="language-sh">git branch -d [BRANCH]
+</code></pre><p>Force the deletion of a local branch:</p><pre class=" language-sh"><code class="language-sh">git branch -D [BRANCH]
+</code></pre><p>Switch HEAD to branch (checkout version):</p><pre class=" language-sh"><code class="language-sh">git checkout [BRANCH]
+</code></pre><p>Switch HEAD to previous branch (checkout version):</p><pre class=" language-sh"><code class="language-sh">git checkout -
+</code></pre><p>Create a branch (checkout version):</p><pre class=" language-sh"><code class="language-sh">git checkout -b [BRANCH]
+</code></pre><p>Create a new tracking branch based on a remote branch (checkout version):</p><pre class=" language-sh"><code class="language-sh">git checkout --track [REMOTE]/[BRANCH]
+</code></pre><h2 id="commit">Commit</h2><p>List the current changes on a branch:</p><pre class=" language-sh"><code class="language-sh">git status
+</code></pre><p>Check the differences between the updated state and the initial state of a file:</p><pre class=" language-sh"><code class="language-sh">git diff [FILE]
+</code></pre><p>Stage a file:</p><pre class=" language-sh"><code class="language-sh">git add [FILE]
+</code></pre><p>Unstage a file:</p><pre class=" language-sh"><code class="language-sh">git reset HEAD -- [FILE]
+</code></pre><p>Remove a file:</p><pre class=" language-sh"><code class="language-sh">git rm [FILE]
+</code></pre><p>Add only some chunks from changes of a file (patch):</p><pre class=" language-sh"><code class="language-sh">git add -p [FILE]
+</code></pre><p>Commit all staged changes:</p><pre class=" language-sh"><code class="language-sh">git commit .
+</code></pre><p>Commit all staged changes with an inline commit message:</p><pre class=" language-sh"><code class="language-sh">git commit -m "[COMMIT_MESSAGE]"
+</code></pre><p>Append all staged changes to the previous commit:</p><pre class=" language-sh"><code class="language-sh">git commit --amend
+</code></pre><p>Squashing multiple commits into one:</p><pre class=" language-sh"><code class="language-sh">git rebase -i HEAD~[NUMBER_OF_COMMITS_FROM_THE_HEAD]
+</code></pre><h2 id="history">History</h2><p>Show all commits starting from the latest:</p><pre class=" language-sh"><code class="language-sh">git log
+</code></pre><p>Show authors, changed date and commit ID for each line in a file:</p><pre class=" language-sh"><code class="language-sh">git blame -c [FILE]
+</code></pre><h2 id="publishing">Publishing</h2><p>Retrieve all changes from a remote without applying them:</p><pre class=" language-sh"><code class="language-sh">git fetch [REMOTE]
+</code></pre><p>Retrieve all changes from a remote and apply them:</p><pre class=" language-sh"><code class="language-sh">git pull [REMOTE] [BRANCH]
+</code></pre><p>Retrieve all changes from a remote and apply them following a rebase strategy:</p><pre class=" language-sh"><code class="language-sh">git pull --rebase [REMOTE] [BRANCH]
+</code></pre><p>Commit changes to a remote:</p><pre class=" language-sh"><code class="language-sh">git push [REMOTE] [BRANCH]
+</code></pre><p>Tag a commit:</p><pre class=" language-sh"><code class="language-sh">git tag [TAG_NAME]
+</code></pre><p>Publish tags to remote:</p><pre class=" language-sh"><code class="language-sh">git push --tags
+</code></pre><h2 id="integration">Integration</h2><p>Merge a branch into your current HEAD:</p><pre class=" language-sh"><code class="language-sh">git merge [BRANCH]
+</code></pre><p>Rebase your current branch:</p><pre class=" language-sh"><code class="language-sh">git rebase [BRANCH]
+</code></pre><p>Rebase you current branch in interactive mode:</p><pre class=" language-sh"><code class="language-sh">git rebase -i [BRANCH]
+</code></pre><p>Abort a rebase:</p><pre class=" language-sh"><code class="language-sh">git rebase --abort
+</code></pre><p>Continue a rebase after resolving conflicts:</p><pre class=" language-sh"><code class="language-sh">git rebase --continue
+</code></pre><h2 id="reset">Reset</h2><p>Discard all local changes and start working on the current branch from the last commit:</p><pre class=" language-sh"><code class="language-sh">git reset --hard HEAD
+</code></pre><p>Reset current branch to a previous commit and discard all changes since then:</p><pre class=" language-sh"><code class="language-sh">git reset --hard [COMMIT_HASH]
+</code></pre><p>Reset current branch to a previous commit and preserve all changes as unstaged changes:</p><pre class=" language-sh"><code class="language-sh">git reset [COMMIT_HASH]
+</code></pre><p>Reset current branch to a previous commit and preserve staged local changes:</p><pre class=" language-sh"><code class="language-sh">git reset --keep [COMMIT_HASH]
+</code></pre><p>Discard local changes to a specific file:</p><pre class=" language-sh"><code class="language-sh">git checkout HEAD [FILE]
+</code></pre><p>Revert a commit by making a new commit which reverses the given commit:</p><pre class=" language-sh"><code class="language-sh">git revert [COMMIT_HASH]
+</code></pre></main></div></article></div><footer class="layout astro-tlw1eqzd"><article class="astro-tlw1eqzd"><nav class="astro-tlw1eqzd"><ul class="astro-tlw1eqzd"><li class="astro-tlw1eqzd"><a href="https://www.linkedin.com/in/theodoregarsoncorbeaux" alt="linkedin" target="_blank" rel="noopener" class="astro-tlw1eqzd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="astro-tlw1eqzd"><g fill="none" class="astro-tlw1eqzd"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 2.838A1.838 1.838 0 0 1 2.838 1H21.16A1.837 1.837 0 0 1 23 2.838V21.16A1.838 1.838 0 0 1 21.161 23H2.838A1.838 1.838 0 0 1 1 21.161V2.838zm8.708 6.55h2.979v1.496c.43-.86 1.53-1.634 3.183-1.634c3.169 0 3.92 1.713 3.92 4.856v5.822h-3.207v-5.106c0-1.79-.43-2.8-1.522-2.8c-1.515 0-2.145 1.089-2.145 2.8v5.106H9.708V9.388zm-5.5 10.403h3.208V9.25H4.208v10.54zM7.875 5.812a2.063 2.063 0 1 1-4.125 0a2.063 2.063 0 0 1 4.125 0z" fill="currentColor" class="astro-tlw1eqzd"></path></g></svg></a></li><li class="astro-tlw1eqzd"><a href="https://github.com/TheodoreGC" alt="github" target="_blank" rel="noopener" class="astro-tlw1eqzd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 250" class="astro-tlw1eqzd"><path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0zm-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931zm6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66zm4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08zm7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403z" fill="currentColor" class="astro-tlw1eqzd"></path></svg></a></li></ul></nav><div class="text_small website-footer-copyright astro-tlw1eqzd">
+      © Copyright 2021 Theodore Garson
+    </div></article></footer></body></html>
