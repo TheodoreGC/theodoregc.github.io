@@ -14,11 +14,14 @@
 </div>
 
 <script>
+  const event = new Event('theme-change');
   let theme = localStorage.getItem('theodore-garson-website-theme');
 
   if (!theme) {
     localStorage.setItem('theodore-garson-website-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     theme = localStorage.getItem('theodore-garson-website-theme');
+    event.detail = theme;
+    document.documentElement.dispatchEvent(event);
   }
 
   if (theme === 'dark') {
@@ -40,9 +43,13 @@
     if (element.closest('label')?.classList.contains('theme-toggle-dark')) {
       theme = localStorage.setItem('theodore-garson-website-theme', 'dark');
       document.documentElement.classList.add('theme-dark');
+      event.detail = theme;
+      document.documentElement.dispatchEvent(event);
     } else {
       theme = localStorage.setItem('theodore-garson-website-theme', 'light');
       document.documentElement.classList.remove('theme-dark');
+      event.detail = theme;
+      document.documentElement.dispatchEvent(event);
     }
   });
 </script>
